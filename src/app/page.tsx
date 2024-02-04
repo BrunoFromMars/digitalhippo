@@ -1,24 +1,29 @@
+import DynamicIcon from "@/components/DynamicIcon";
 import { MaxWidthWrapper } from "@/components/MaxWidthWrapper";
 import { Button, buttonVariants } from "@/components/ui/button";
-import { ArrowDownToLine, CheckCircle, Leaf } from "lucide-react";
+import dynamicIconImports from "lucide-react/dynamicIconImports";
 import Link from "next/link";
 
-const perks = [
+const perks: {
+  name: string;
+  iconName: keyof typeof dynamicIconImports;
+  description: string;
+}[] = [
   {
     name: "Instant Delivery",
-    Icon: ArrowDownToLine,
+    iconName: "arrow-down-to-line",
     description:
       "Get your assets delivered in seconds and download them right away.",
   },
   {
     name: "Guaranteed Quality",
-    Icon: CheckCircle,
+    iconName: "check-circle",
     description:
       "Every asset is verified by our team members to ensure highest quality standards. Not Happy? We gurantee a 30 days refund.",
   },
   {
     name: "For the Planet",
-    Icon: Leaf,
+    iconName: "leaf",
     description:
       "We've pledged 1% of sales to the preservation and restoration of environment.",
   },
@@ -60,7 +65,10 @@ export default function Home() {
                   {/* Icon */}
                   <div className=" md:flex-shrink-0 flex justify-center">
                     <div className=" h-16 w-16 flex justify-center items-center rounded-full bg-blue-100 text-blue-900 ">
-                      {<perk.Icon className=" w-1/3 h-1/3" />}
+                      <DynamicIcon
+                        className="w-1/3 h-1/3"
+                        name={perk.iconName}
+                      />
                     </div>
                   </div>
 
